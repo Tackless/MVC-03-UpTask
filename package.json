@@ -1,12 +1,12 @@
 {
-  "name": "app-salon-php-mvc-sass-s",
+  "name": "up-task-mvc",
   "version": "1.0.0",
-  "description": "",
+  "description": "working with mvc",
   "main": "index.js",
   "scripts": {
     "start": "gulp"
   },
-  "author": "",
+  "author": "Donovan Eliosa",
   "license": "ISC",
   "devDependencies": {
     "cssnano": "^4.1.10",
@@ -25,5 +25,17 @@
     "gulp-webp": "^4.0.1",
     "sass": "^1.41.1",
     "terser": "^5.3.8"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Tackless/UpTask_MVC.git"
+  },
+  "keywords": [
+    "SASS",
+    "MVC"
+  ],
+  "bugs": {
+    "url": "https://github.com/Tackless/UpTask_MVC/issues"
+  },
+  "homepage": "https://github.com/Tackless/UpTask_MVC#readme"
 }
