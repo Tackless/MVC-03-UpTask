@@ -4,6 +4,10 @@
     <div class="contenedor-sm">
         <p class="descripcion-pagina">Coloca tu nuevo password</p>
 
+        <?php include_once __DIR__ . '/../templates/alertas.php'; ?>
+
+        <?php if ($mostrar) { ?>
+
         <form action="/" method="post" class="formulario">
 
             <div class="campo">
@@ -13,6 +17,8 @@
 
             <input type="submit" value="Guardar Password" class="boton">
         </form>
+
+        <?php } ?>
 
         <div class="acciones">
             <a href="/crear">¿Aún no tienes una cuenta? Obtener una.</a>
