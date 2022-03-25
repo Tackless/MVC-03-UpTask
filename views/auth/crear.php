@@ -7,12 +7,12 @@
         <form action="/crear" method="post" class="formulario">
             <div class="campo">
                 <label for="nombre">Nombre:</label>
-                <input type="text" name="nombre" id="nombre" placeholder="Tu Nombre">
+                <input type="text" name="nombre" id="nombre" placeholder="Tu Nombre" value="<?php echo $usuario->nombre; ?>">
             </div>
             
             <div class="campo">
                 <label for="email">E-mail:</label>
-                <input type="email" name="email" id="email" placeholder="Tu E-mail">
+                <input type="email" name="email" id="email" placeholder="Tu E-mail" value="<?php echo $usuario->email; ?>">
             </div>
 
             <div class="campo">
