@@ -130,6 +130,24 @@ class LoginController {
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             
+            // Añadir el nuevo password
+            $usuario->sincronizar($_POST);
+
+            // Validar Password
+            $alertas = $usuario->validarPassword();
+
+            if (empty($alertas)) {
+                // hashear password
+                $usuario->hashPassword();
+                // Eliminar token
+                $usuario->token = null;
+
+                // Guardar
+                $resultado = $usuario->guardar();
+
+                // Redireccionar
+                if($resultado) header('Location: /');
+            }
         }
 
         $alertas = Usuario::getAlertas();
