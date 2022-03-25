@@ -80,7 +80,24 @@ class LoginController {
             $alertas = $usuario->validarEmail();
 
             if (empty($alertas)) {
-                
+                // Buscar Usuario
+                $usuario = Usuario::where('email', $usuario->email);
+
+                if ($usuario && $usuario->confirmado) {
+                    // Usuario encontrado
+                    // Generar un nuevo token
+
+                    // Actualizar el usuario
+
+                    // Enviar el email
+
+                    // Imprimir la alerta
+                    
+
+                } else {
+                    Usuario::setAlerta('error', 'El Usuario no existe o no está confirmado');
+                    $alertas = Usuario::getAlertas();
+                }
             }
         }
         $router->render('auth/olvide',[
