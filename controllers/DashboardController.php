@@ -9,6 +9,8 @@ class DashboardController {
 
         session_start();
 
+        isAuth();
+
 
         $router->render('dashboard/index', [
 
