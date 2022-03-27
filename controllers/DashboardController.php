@@ -13,7 +13,7 @@ class DashboardController {
 
 
         $router->render('dashboard/index', [
-
+            'titulo' => 'Proyectos'
         ]);
     }
 }
