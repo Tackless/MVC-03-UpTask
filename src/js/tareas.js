@@ -40,18 +40,43 @@
             }
         })
 
-        document.querySelector('body').appendChild(modal);
+        document.querySelector('.dashboard').appendChild(modal);
     };
 
     function submitFormularioNuevaTarea() {
         const tarea = document.querySelector('#tarea').value.trim();
         if (tarea === '') {
             // Mostrar una alerta de error
-            
+            mostrarAlerta('El Nombre de la Tarea es Obligatorio', 'error', 
+            document.querySelector('.formulario legend'));
 
             return;
-        } else {
-            
         }
+    };
+
+    // Muestra un mensaje en la interfaz
+    function mostrarAlerta(mensaje, tipo, referencia) {
+        // Prevenir alertas multiples
+        const alertaPrevia = document.querySelector('.alerta');
+        if (alertaPrevia) {
+            alertaPrevia.remove();
+        }
+        
+        const alerta = document.createElement('DIV');
+        alerta.classList.add('alerta', tipo);
+        alerta.textContent = mensaje;
+
+        // Inserta la alerta antes del legend
+        referencia.parentElement.insertBefore(alerta, referencia.nextElementSibling);
+
+        // Eliminar la alerta despues de 5 segundos
+        setTimeout(() => {
+            alerta.remove();
+        }, 5000);
+    };
+
+    // Consultar el Servidor para añadir una nueva tarea al proyecto actual
+    function mostrarAlerta(tarea) {
+        
     };
 })();
