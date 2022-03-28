@@ -11,7 +11,7 @@
             <legend>Añade una nueva tarea</legend>
             <div class="campo">
                 <label for="tarea">Tarea</label>
-                <input type="text" name="tarea" placeholder="Añadir Tarea al Proyecto Actual">
+                <input type="text" name="tarea" id="tarea" placeholder="Añadir Tarea al Proyecto Actual">
             </div>
             <div class="opciones">
                 <input type="submit" value="Añadir Tarea" class="submit-nueva-tarea">
@@ -35,8 +35,23 @@
                     modal.remove();
                 }, 500);
             }
+            if (e.target.classList.contains('submit-nueva-tarea')) {
+                submitFormularioNuevaTarea();
+            }
         })
 
         document.querySelector('body').appendChild(modal);
-    }
+    };
+
+    function submitFormularioNuevaTarea() {
+        const tarea = document.querySelector('#tarea').value.trim();
+        if (tarea === '') {
+            // Mostrar una alerta de error
+            
+
+            return;
+        } else {
+            
+        }
+    };
 })();
