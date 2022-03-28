@@ -36,6 +36,11 @@ $router->post('/crear-proyecto', [DashboardController::class, 'crear_proyecto'])
 $router->get('/proyecto', [DashboardController::class, 'proyecto']);
 $router->get('/perfil', [DashboardController::class, 'perfil']);
 
+// API para las Tareas
+$router->get('/api/tareas', [TareaController::class, 'index']);
+$router->post('/api/tareas', [TareaController::class, 'crear']);
+$router->post('/api/tareas/actualizar', [TareaController::class, 'actualizar']);
+$router->post('/api/tareas/eliminar', [TareaController::class, 'eliminar']);
 
 // Comprueba y valida las rutas, que existan y les asigna las funciones del Controlador
 $router->comprobarRutas();
