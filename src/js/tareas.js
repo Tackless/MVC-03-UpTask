@@ -61,7 +61,20 @@
             btnEstadoTarea.classList.add(`${estados[tarea.estado].toLowerCase()}`);
             btnEstadoTarea.textContent = estados[tarea.estado];
             btnEstadoTarea.dataset.estadoTarea = tarea.estado;
-            console.log(btnEstadoTarea);
+
+            const btnElimarTarea = document.createElement('BUTTON');
+            btnElimarTarea.classList.add('eliminar-tarea');
+            btnElimarTarea.dataset.idTarea = tarea.id;
+            btnElimarTarea.textContent = 'Elminar';
+
+            opcionesDiv.appendChild(btnEstadoTarea);
+            opcionesDiv.appendChild(btnElimarTarea);
+
+            contenedorTarea.appendChild(nombreTarea);
+            contenedorTarea.appendChild(opcionesDiv);
+
+            const listadoTareas = document.querySelector('#listado-tareas');
+            listadoTareas.appendChild(contenedorTarea);
         });
     }
 
