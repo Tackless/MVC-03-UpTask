@@ -84,8 +84,6 @@
         datos.append('nombre', tarea);
         datos.append('proyectoId', obtenerProyecto());
 
-        
-
         try {
             const url = 'http://localhost:3001/api/tareas';
             const respuesta = await fetch(url, {
@@ -95,6 +93,11 @@
             
             const resultado = await respuesta.json();
             console.log(resultado);
+
+            if (resultado.mensaje) {
+                mostrarAlerta(resultado.mensaje, resultado.tipo, 
+                document.querySelector('.formulario legend')); 
+            } 
 
         } catch (error) {
             console.log(error);
