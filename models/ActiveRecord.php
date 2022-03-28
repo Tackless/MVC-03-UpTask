@@ -69,7 +69,7 @@ class ActiveRecord {
     }
 
     // Busca todos los registros de un ID
-    public static function belognsTo($columna, $valor) {
+    public static function belongsTo($columna, $valor) {
         $query = "SELECT * FROM " . static::$tabla . " WHERE ${columna} = '${valor}'";
         $resultado = self::consultarSQL($query);
         return $resultado ;

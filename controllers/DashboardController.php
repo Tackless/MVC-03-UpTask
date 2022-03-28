@@ -13,7 +13,7 @@ class DashboardController {
         isAuth();
 
         $id = $_SESSION['id'];
-        $proyectos = Proyecto::belognsTo('propietarioId', $id);
+        $proyectos = Proyecto::belongsTo('propietarioId', $id);
 
 
         $router->render('dashboard/index', [
