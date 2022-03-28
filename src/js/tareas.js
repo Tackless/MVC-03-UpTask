@@ -52,6 +52,8 @@
 
             return;
         }
+
+        agregarTarea(tarea);
     };
 
     // Muestra un mensaje en la interfaz
@@ -76,7 +78,24 @@
     };
 
     // Consultar el Servidor para añadir una nueva tarea al proyecto actual
-    function mostrarAlerta(tarea) {
-        
+    async function agregarTarea(tarea) {
+        // Construir la petición
+        const datos = new FormData();
+        datos.append('nombre', tarea);
+
+        try {
+            const url = 'http://localhost:3001/api/tareas';
+            const respuesta = await fetch(url, {
+                method: 'POST',
+                body: datos
+            });
+            
+            const resultado = await respuesta.json();
+            console.log(resultado);
+
+        } catch (error) {
+            console.log(error);
+        }
     };
+    
 })();
