@@ -1,6 +1,7 @@
 (function () {
 
     obtenerTareas();
+    let tareas = [];
 
     // Boton para mostrar el Modal de Agregar tarea
     const nuevaTareaBtn = document.querySelector('#agregar-tarea');
@@ -14,17 +15,17 @@
             const respuesta = await fetch(url);
             const resultado = await respuesta.json();
             
-            const { tareas } = resultado;
+            tareas = resultado.tareas;
 
-            mostrarTareas(tareas);
-            
+            mostrarTareas();
             
         } catch (error) {
             console.log(error);
         }
     };
 
-    function mostrarTareas(tareas) {
+    function mostrarTareas() {
+        limpiarTareas();
         if (tareas.length === 0) {
             const contenedorTareas = document.querySelector('#listado-tareas');
 
@@ -61,6 +62,9 @@
             btnEstadoTarea.classList.add(`${estados[tarea.estado].toLowerCase()}`);
             btnEstadoTarea.textContent = estados[tarea.estado];
             btnEstadoTarea.dataset.estadoTarea = tarea.estado;
+            btnEstadoTarea.ondblclick = function() {
+                cambiarEstadoTarea([{...tarea}]);
+            }
 
             const btnElimarTarea = document.createElement('BUTTON');
             btnElimarTarea.classList.add('eliminar-tarea');
@@ -167,7 +171,6 @@
             });
             
             const resultado = await respuesta.json();
-            console.log(resultado);
 
             if (resultado.mensaje) {
                 mostrarAlerta(resultado.mensaje, resultado.tipo, 
@@ -179,6 +182,18 @@
                 setTimeout(() => {
                     modal.remove();
                 }, 3000);
+
+                // Agregar el objeto de tarea al global de tareas
+                const tareaObj = {
+                    id: String(resultado.id),
+                    nombre: tarea,
+                    estado: '0',
+                    proyectoId: resultado.proyectoId
+                }
+
+                tareas = [...tareas, tareaObj];
+                mostrarTareas();
+                
             }
 
         } catch (error) {
@@ -186,10 +201,28 @@
         }
     };
 
+    function cambiarEstadoTarea(tarea) {
+
+        const nuevoEstado = tarea.estado === '1'? '0' : '1';
+        tarea.estado = nuevoEstado;
+        actualizarTarea(tarea);
+    };
+
+    function actualizarTarea(tarea) {
+        console.log(tarea);
+    };
+
     function obtenerProyecto() {
         const proyectoParams = new URLSearchParams(window.location.search);
         const proyecto = Object.fromEntries(proyectoParams.entries());
         return proyecto.id;
+    };
+
+    function limpiarTareas() {
+        const listadoTareas = document.querySelector('#listado-tareas');
+        while (listadoTareas.firstChild) {
+            listadoTareas.removeChild(listadoTareas.firstChild);
+        }
     };
     
 })();
