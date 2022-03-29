@@ -270,10 +270,36 @@
 
     async function eliminarTarea(tarea) {
         
+        const {estado, id, nombre} = tarea;
+
         const datos = new FormData();
+        datos.append('id', id);
+        datos.append('nombre', nombre);
+        datos.append('estado', estado);
+        datos.append('proyectoId', obtenerProyecto());
 
         try {
+            const url = 'http://localhost:3001/api/tareas/eliminar';
+            const respuesta = await fetch(url, {
+                method: 'POST',
+                body: datos
+            });
             
+            const resultado = await respuesta.json();
+            
+            if (resultado.resultado) {
+                // mostrarAlerta(
+                //     resultado.mensaje, 
+                //     resultado.tipo, 
+                //     document.querySelector('.contenedor-nueva-tarea')
+                // );
+
+                Swal.fire('Eliminado!', resultado.mensaje, 'success');
+
+                tareas = tareas.filter( tareaMemoria => tareaMemoria.id !== tarea.id);
+                mostrarTareas();
+            }
+
         } catch (error) {
             console.log(error);
         }
