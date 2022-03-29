@@ -3,7 +3,7 @@
 <div class="contenedor-sm">
     <?php include_once __DIR__ . '/../templates/alertas.php'; ?>
 
-    <form method="post" class="formulario">
+    <form action="/perfil" method="post" class="formulario">
         <div class="campo">
             <label for="nombre">Nombre: </label>
             <input type="text" value="<?php echo $usuario->nombre ?>" name="nombre" id="nombre" placeholder="Tu Nombre">
