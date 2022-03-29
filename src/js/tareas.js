@@ -5,7 +5,9 @@
 
     // Boton para mostrar el Modal de Agregar tarea
     const nuevaTareaBtn = document.querySelector('#agregar-tarea');
-    nuevaTareaBtn.addEventListener('click', mostrarFormulario);
+    nuevaTareaBtn.addEventListener('click', function () {
+        mostrarFormulario();
+    });
 
     async function obtenerTareas() {
         
@@ -52,6 +54,9 @@
 
             const nombreTarea = document.createElement('P');
             nombreTarea.textContent = tarea.nombre;
+            nombreTarea.ondblclick = function () {
+                mostrarFormulario(editar = true, tarea);
+            };
 
             const opcionesDiv = document.createElement('DIV');
             opcionesDiv.classList.add('opciones');
@@ -85,18 +90,18 @@
         });
     }
 
-    function mostrarFormulario() {
+    function mostrarFormulario(editar = false, tarea = {}) {
         const modal = document.createElement('DIV');
         modal.classList.add('modal');
         modal.innerHTML = `
         <form class="formulario nueva-tarea">
-            <legend>Añade una nueva tarea</legend>
+            <legend>${editar ? 'Editar Tarea' : 'Añade una nueva tarea'}</legend>
             <div class="campo">
                 <label for="tarea">Tarea</label>
-                <input type="text" name="tarea" id="tarea" placeholder="Añadir Tarea al Proyecto Actual">
+                <input type="text" name="tarea" id="tarea" placeholder="${tarea.nombre ? 'Editar la Tarea' : 'Añadir Tarea al Proyecto Actual' }" value="${tarea.nombre ? tarea.nombre : '' }">
             </div>
             <div class="opciones">
-                <input type="submit" value="Añadir Tarea" class="submit-nueva-tarea">
+                <input type="submit" value="${editar ? 'Guardar Cambios' : 'Añadir tarea'}" class="submit-nueva-tarea">
                 <button type="button" class="cerrar-modal">Cancelar</button>
             </div>
         </form>
