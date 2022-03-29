@@ -182,15 +182,14 @@
             const resultado = await respuesta.json();
 
             if (resultado.mensaje) {
-                mostrarAlerta(resultado.mensaje, resultado.tipo, 
-                document.querySelector('.formulario legend')); 
+                Swal.fire('Tarea Creada!', resultado.mensaje, 'success');
             } 
 
             if (resultado.tipo === 'exito') {
                 const modal = document.querySelector('.modal');
-                setTimeout(() => {
+                if (modal) {
                     modal.remove();
-                }, 3000);
+                }
 
                 // Agregar el objeto de tarea al global de tareas
                 const tareaObj = {
@@ -219,9 +218,6 @@
 
     async function actualizarTarea(tarea) {
 
-        console.log(tarea);
-        return;
-
         const {estado, id, nombre} = tarea;
 
         const datos = new FormData();
@@ -243,15 +239,17 @@
             const resultado = await respuesta.json();
             
             if (resultado.respuesta.tipo === 'exito') {
-                mostrarAlerta(
-                    resultado.respuesta.mensaje,
-                    resultado.respuesta.tipo,
-                    document.querySelector('.contenedor-nueva-tarea')
-                );
+                Swal.fire(resultado.respuesta.mensaje, resultado.respuesta.mensaje, 'success');
+                
+                const modal = document.querySelector('.modal');
+                if (modal) {
+                    modal.remove();
+                };
 
                 tareas = tareas.map(tareaMemoria => {
                     if (tareaMemoria.id === id) {
                         tareaMemoria.estado = estado;
+                        tareaMemoria.nombre = nombre;
                     } 
 
                     return tareaMemoria;
