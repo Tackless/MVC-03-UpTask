@@ -63,7 +63,7 @@
             btnEstadoTarea.textContent = estados[tarea.estado];
             btnEstadoTarea.dataset.estadoTarea = tarea.estado;
             btnEstadoTarea.ondblclick = function() {
-                cambiarEstadoTarea([{...tarea}]);
+                cambiarEstadoTarea({...tarea});
             }
 
             const btnElimarTarea = document.createElement('BUTTON');
@@ -203,13 +203,35 @@
 
     function cambiarEstadoTarea(tarea) {
 
-        const nuevoEstado = tarea.estado === '1'? '0' : '1';
+        const nuevoEstado = tarea.estado === '1' ? '0' : '1';
         tarea.estado = nuevoEstado;
         actualizarTarea(tarea);
     };
 
-    function actualizarTarea(tarea) {
-        console.log(tarea);
+    async function actualizarTarea(tarea) {
+        const {estado, id, nombre, proyectoId} = tarea;
+
+        const datos = new FormData();
+        datos.append('id', id);
+        datos.append('nombre', nombre);
+        datos.append('estado', estado);
+        datos.append('proyectoId', obtenerProyecto());
+
+        // for (const valor of datos.values()) {
+        //     console.log(valor);
+        // }
+
+        try {
+            const url = 'http://localhost:3001/api/tarea/actualizar';
+            const respuesta = await fetch(url, {
+                method: 'POST',
+                body: datos
+            });
+            const resultado = await respuesta.json();
+            
+        } catch (error) {
+            
+        }
     };
 
     function obtenerProyecto() {
