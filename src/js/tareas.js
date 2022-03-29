@@ -222,13 +222,21 @@
         // }
 
         try {
-            const url = 'http://localhost:3001/api/tarea/actualizar';
+            const url = 'http://localhost:3001/api/tareas/actualizar';
             const respuesta = await fetch(url, {
                 method: 'POST',
                 body: datos
             });
             const resultado = await respuesta.json();
             
+            if (resultado.respuesta.tipo === 'exito') {
+                mostrarAlerta(
+                    resultado.respuesta.mensaje,
+                    resultado.respuesta.tipo,
+                    document.querySelector('.contenedor-nueva-tarea')
+                );
+            }
+
         } catch (error) {
             
         }
