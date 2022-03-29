@@ -143,7 +143,7 @@
         <form class="formulario nueva-tarea">
             <legend>${editar ? 'Editar Tarea' : 'Añade una nueva tarea'}</legend>
             <div class="campo">
-                <label for="tarea">Tarea</label>
+                <label for="tarea">Tarea: </label>
                 <input type="text" name="tarea" id="tarea" placeholder="${tarea.nombre ? 'Editar la Tarea' : 'Añadir Tarea al Proyecto Actual' }" value="${tarea.nombre ? tarea.nombre : '' }">
             </div>
             <div class="opciones">
