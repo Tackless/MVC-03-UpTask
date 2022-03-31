@@ -109,18 +109,25 @@ class DashboardController {
                     Usuario::setAlerta('exito', 'Guardado Correctamente');
                     $alertas = $usuario->getAlertas();
                 }
-
-                
-
-
             }
-
         }
 
         $router->render('dashboard/perfil', [
             'titulo' => 'Perfil',
             'alertas' => $alertas,
             'usuario' => $usuario
+        ]);
+    }
+
+    public static function cambiar_password(Router $router){
+        
+        session_start();
+        isAuth();
+        $alertas = [];
+
+        $router->render('dashboard/cambiar-password', [
+            'titulo' => 'Cambiar Password',
+            'alertas' => $alertas
         ]);
     }
 }
