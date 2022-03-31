@@ -32,6 +32,17 @@
         background-color: darken($grisOscuro, 5%);
     }
 
+    .filtros {
+        background-color: lighten($grisOscuro, 10%);
+        h2,
+        label {
+            color: v.$blanco;
+        }
+        .campo input[type="radio"] {
+            accent-color: $grisOscuro;
+        }
+    }
+
     .dashboard {
         background-color: $grisOscuro;
 
@@ -47,6 +58,14 @@
         background-color: lighten($grisOscuro, 20%);
         &:hover {
             background-color: lighten($grisOscuro, 15%);
+        }
+    }
+
+    .listado-tareas .tarea {
+        background-color: lighten($grisOscuro, 10%);
+        border: none;
+        p {
+            color: v.$grisClaro;
         }
     }
 }
