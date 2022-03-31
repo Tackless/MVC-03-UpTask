@@ -15,21 +15,51 @@
         color: v.$blanco;
     }
     .descripcion-pagina,
-    .formulario .campo input,
     .nombre-pagina {
         color: darken(v.$grisClaro, 15%);
     }
 
     .formulario .campo input {
         background-color: lighten($color: $grisOscuro, $amount: 15%);
+        color: v.$blanco;
+        &::placeholder {
+            color: darken(v.$grisClaro, 30%);
+        }
     }
 
     .alertas .error {
         background-color: v.$blanco;
     }
+    .sidebar {
+        @include m.tablet {
+            background-color: darken($grisOscuro, 5%);
+        }
+        .sidebar-nav a {
+            &.activo,
+            &:hover {
+                background-color: v.$naranja;
+            }
+        }
+    } 
 
-    .barra-mobile {
+    .barra-mobile,
+    .barra {
         background-color: darken($grisOscuro, 5%);
+    }
+
+    .barra {
+        p {
+            color: v.$naranja;
+            
+            span {
+                color: v.$grisClaro;
+            }
+        }
+        .cerrar-sesion {
+            @include m.boton(v.$naranja, v.$blanco);
+            padding: 1rem;
+            font-size: 1.2rem;
+        }
     }
 
     .filtros {
@@ -39,7 +69,7 @@
             color: v.$blanco;
         }
         .campo input[type="radio"] {
-            accent-color: $grisOscuro;
+            accent-color: v.$naranja;
         }
     }
 
@@ -49,6 +79,13 @@
         .enlace {
             color: v.$grisClaro;
             &:hover {
+                color: darken(v.$grisClaro, 20%);
+            }
+        }
+        .formulario input:not([type="submit"]) {
+            background-color: lighten($grisOscuro, 20%);
+            color: v.$blanco;
+            &::placeholder {
                 color: darken(v.$grisClaro, 20%);
             }
         }
@@ -65,6 +102,21 @@
         background-color: lighten($grisOscuro, 10%);
         border: none;
         p {
+            color: v.$grisClaro;
+        }
+    }
+
+    .modal .formulario {
+        background-color: $grisOscuro;
+        input[type="text"] {
+            background-color: lighten($grisOscuro, 20%);
+            border: none;
+            color: v.$blanco;
+            &::placeholder {
+                color: darken(v.$grisClaro, 20%);
+            }
+        }
+        legend {
             color: v.$grisClaro;
         }
     }
