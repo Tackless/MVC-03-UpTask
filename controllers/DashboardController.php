@@ -89,8 +89,20 @@ class DashboardController {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             $usuario->sincronizar($_POST);
-
             $alertas = $usuario->validarPerfil();
+
+            if (empty($alertas)) {
+                // Guardar el usuario
+                $usuario->guardar();
+
+                // Asignar nombre nuevo a la barra
+                $_SESSION['nombre'] = $usuario->nombre;
+
+                Usuario::setAlerta('exito', 'Guardado Correctamente');
+                $alertas = $usuario->getAlertas();
+
+
+            }
 
         }
 
